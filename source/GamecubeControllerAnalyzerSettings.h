@@ -1,27 +1,25 @@
-#ifndef SIMPLESERIAL_ANALYZER_SETTINGS
-#define SIMPLESERIAL_ANALYZER_SETTINGS
+#ifndef GAMECUBECONTROLLER_ANALYZER_SETTINGS
+#define GAMECUBECONTROLLER_ANALYZER_SETTINGS
 
 #include <AnalyzerSettings.h>
 #include <AnalyzerTypes.h>
 
-class SimpleSerialAnalyzerSettings : public AnalyzerSettings
+class GamecubeControllerAnalyzerSettings : public AnalyzerSettings
 {
 public:
-	SimpleSerialAnalyzerSettings();
-	virtual ~SimpleSerialAnalyzerSettings();
+	GamecubeControllerAnalyzerSettings();
+	virtual ~GamecubeControllerAnalyzerSettings();
 
 	virtual bool SetSettingsFromInterfaces();
 	void UpdateInterfacesFromSettings();
 	virtual void LoadSettings( const char* settings );
 	virtual const char* SaveSettings();
 
-	
+
 	Channel mInputChannel;
-	U32 mBitRate;
 
 protected:
 	std::auto_ptr< AnalyzerSettingInterfaceChannel >	mInputChannelInterface;
-	std::auto_ptr< AnalyzerSettingInterfaceInteger >	mBitRateInterface;
 };
 
-#endif //SIMPLESERIAL_ANALYZER_SETTINGS
+#endif //GAMECUBECONTROLLER_ANALYZER_SETTINGS
