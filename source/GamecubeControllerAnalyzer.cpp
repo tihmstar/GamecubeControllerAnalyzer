@@ -73,9 +73,7 @@ void GamecubeControllerAnalyzer::WorkerThread()
 		double full_time = full_diff / SampleRateMHz;
 
 		if (
-				(bitcount == 8 && full_time > 7) /* console stop bit */ //expected 1.375us
-				||
-				(bitcount == 24 && full_time > 7) /* controller stop bit */ //expected 4.5us
+				(bitcount % 8 == 0 && full_time > 7) /* console stop bit */ //expected 1.375us  /* controller stop bit */ //expected 4.5us
 			){
 
 			mResults->AddMarker( mSerial->GetSampleNumber(), AnalyzerResults::Dot, mSettings->mInputChannel );
