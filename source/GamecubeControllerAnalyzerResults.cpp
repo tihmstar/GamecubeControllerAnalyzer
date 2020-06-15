@@ -26,10 +26,10 @@ void GamecubeControllerAnalyzerResults::GenerateBubbleText( U64 frame_index, Cha
 
 	if (frame.mFlags & FLAG_CONTROLLER) {
 		strcat(number_str, "S: ");
-		AnalyzerHelpers::GetNumberString( frame.mData1, display_base, 24, number_str+3, 128 );
+		AnalyzerHelpers::GetNumberString( frame.mData1, display_base, frame.mData2, number_str+3, 128 );
 	}else{
 		strcat(number_str, "M: ");
-		AnalyzerHelpers::GetNumberString( frame.mData1, display_base, 8, number_str+3, 128 );
+		AnalyzerHelpers::GetNumberString( frame.mData1, display_base, frame.mData2, number_str+3, 128 );
 	}
 
 	AddResultString( number_str );
@@ -53,7 +53,7 @@ void GamecubeControllerAnalyzerResults::GenerateExportFile( const char* file, Di
 		AnalyzerHelpers::GetTimeString( frame.mStartingSampleInclusive, trigger_sample, sample_rate, time_str, 128 );
 
 		char number_str[128];
-		AnalyzerHelpers::GetNumberString( frame.mData1, display_base, 8, number_str, 128 );
+		AnalyzerHelpers::GetNumberString( frame.mData1, display_base, frame.mData2, number_str, 128 );
 
 		file_stream << time_str << "," << number_str << std::endl;
 
@@ -78,10 +78,10 @@ void GamecubeControllerAnalyzerResults::GenerateFrameTabularText( U64 frame_inde
 
 	if (frame.mFlags & FLAG_CONTROLLER) {
 		strcat(number_str, "S: ");
-		AnalyzerHelpers::GetNumberString( frame.mData1, display_base, 24, number_str+3, 128 );
+		AnalyzerHelpers::GetNumberString( frame.mData1, display_base, frame.mData2, number_str+3, 128 );
 	}else{
 		strcat(number_str, "M: ");
-		AnalyzerHelpers::GetNumberString( frame.mData1, display_base, 8, number_str+3, 128 );
+		AnalyzerHelpers::GetNumberString( frame.mData1, display_base, frame.mData2, number_str+3, 128 );
 	}
 
 	AddTabularText( number_str );

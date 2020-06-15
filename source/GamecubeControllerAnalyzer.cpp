@@ -84,6 +84,7 @@ void GamecubeControllerAnalyzer::WorkerThread()
 				//we have a byte to save.
 				Frame frame;
 				frame.mData1 = fulldata;
+				frame.mData2 = bitcount;
 				frame.mFlags = flag;
 				frame.mStartingSampleInclusive = full_starting_sample;
 				frame.mEndingSampleInclusive = mSerial->GetSampleNumber();
