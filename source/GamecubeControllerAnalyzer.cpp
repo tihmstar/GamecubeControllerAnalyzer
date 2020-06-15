@@ -39,7 +39,7 @@ void GamecubeControllerAnalyzer::WorkerThread()
 	int16_t bitcount = 0;
 	U8 flag = 0;
 
-	U32 fulldata = 0;
+	U64 fulldata = 0;
 	U64 full_starting_sample = 0;
 
 
