@@ -72,8 +72,9 @@ void GamecubeControllerAnalyzer::WorkerThread()
 		U64 full_diff = final_falling - starting_sample;
 		double full_time = full_diff / SampleRateMHz;
 
+
 		if (
-				(bitcount % 8 == 0 && full_time > 7) /* console stop bit */ //expected 1.375us  /* controller stop bit */ //expected 4.5us
+				(bitcount % 8 == 0 && full_time > 5) /* console stop bit */ //expected 1.375us  /* controller stop bit */ //expected 4.5us
 			){
 
 			mResults->AddMarker( mSerial->GetSampleNumber(), AnalyzerResults::Dot, mSettings->mInputChannel );
@@ -118,9 +119,8 @@ void GamecubeControllerAnalyzer::WorkerThread()
 				flag |= FLAG_INVALID;
 			}
 			bitcount++;
-		}
 
-		if (full_time >= 3.5 && full_time <= 4) {
+		}else if (full_time >= 3.5 && full_time <= 4) {
 			//this is controller
 			flag |= FLAG_CONTROLLER;
 
@@ -134,6 +134,10 @@ void GamecubeControllerAnalyzer::WorkerThread()
 			}
 
 			bitcount++;
+		}else{
+			//a frame failed to decode
+			bitcount = 0;
+			continue; //this is a broken bit?
 		}
 
 		if (!bitcount) {
